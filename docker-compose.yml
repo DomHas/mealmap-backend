@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: mealmap-postgres
+    environment:
+      POSTGRES_DB: mealmapdb
+      POSTGRES_USER: mealmap
+      POSTGRES_PASSWORD: mealmap
+    ports:
+      - "5433:5432"
+    volumes:
+      - mealmap-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  mealmap-postgres-data:
