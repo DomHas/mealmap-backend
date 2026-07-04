@@ -22,6 +22,7 @@ public class Recipe {
 
     private String category;
 
+    @Column(columnDefinition = "TEXT")
     private String instructions;
 
     // mappedBy zeigt auf das Feld "recipe" in Ingredient.
