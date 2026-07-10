@@ -407,3 +407,59 @@ Die Unit-Tests liegen unter `src/test/java`. Sie können einzeln oder gesamt üb
 ---
 
 ## 6. Hilfestellungen und Quellen
+### Mitlernende
+Gemeinsame Umsetzung im Team **Dominique Hassenpflug** und **Marina Tschirky** im selben GitHub-Repository (siehe Commit-Historie für die jeweiligen Beiträge).
+
+### Zusammenarbeitsübersicht
+
+Basierend auf der Commit-Historie im GitHub-Repository
+(`github.com/DomHas/mealmap-backend`, Branch `main`):
+
+| Datum | Bereich | Autor |
+|---|---|---|
+| 04.07.2026 | Projekt-Setup mit pom.xml Dependencies | Dominique Hasenpflug |
+| 04.07.2026 | Docker-Compose und Datenbank-Verbindung konfiguriert | Dominique Hasenpflug |
+| 04.07.2026 | Recipe und Ingredient Entities mit OneToMany/ManyToOne Beziehung | Dominique Hasenpflug |
+| 04.07.2026 | Recipe Repository und Seed-Daten mit 6 Rezepten | Dominique Hasenpflug |
+| 04.07.2026 | DTOs für Recipe und Ingredient (Ausgabe und Eingabe mit Validierung) | Dominique Hasenpflug |
+| 08.07.2026 | Packages für Mapper, Service, Exception angelegt | Marina Tschirky |
+| 09.07.2026 | RecipeMapper implementiert, Service und Exception als Gerüst angelegt | Marina Tschirky |
+| 09.07.2026 | RecipeNotFoundException implementiert | Marina Tschirky |
+| 09.07.2026 | RecipeService vollständig implementiert (CRUD) | Marina Tschirky |
+| 09.07.2026 | RecipeController implementiert (CRUD-Endpoints) | Marina Tschirky |
+| 09.07.2026 | ErrorResponse DTO hinzugefügt | Marina Tschirky |
+| 09.07.2026 | GlobalExceptionHandler implementiert | Marina Tschirky |
+| 10.07.2026 | RecipeRepositoryTest hinzugefügt | Marina Tschirky |
+| 10.07.2026 | RecipeSeederTest hinzugefügt | Marina Tschirky |
+| 10.07.2026 | RecipeServiceMockTest hinzugefügt | Marina Tschirky |
+| 10.07.2026 | RecipeControllerTest hinzugefügt | Marina Tschirky |
+| 10.07.2026 | Grundgerüst Gesamtdokumentation mit User Stories | Dominique Hasenpflug |
+| 10.07.2026 | Klassendiagramm zur Dokumentation hinzugefügt | Marina Tschirky |
+| 10.07.2026 | Installationsanleitung ergänzt und Überschriftenhierarchie korrigiert | Marina Tschirky |
+| 10.07.2026 | Testplan und Testdurchführung Insomnia-Tests ergänzt, Screenshots der Testfälle | Dominique Hasenpflug |
+| 10.07.2026 | Projektidee ergänzt | Dominique Hasenpflug |
+
+**Zusammenfassung:** Dominique Hasenpflug übernahm Projekt-Setup,
+Datenmodell (Entities, Repository, Seed-Daten, DTOs) sowie
+Projektidee, User Stories und den Insomnia-Testteil der
+Dokumentation. Marina Tschirky übernahm Mapper, Service, Controller,
+Exception Handling, alle Unit-Tests, das Klassendiagramm und die
+Installationsanleitung.
+### Internet-Quellen
+- **Pauli Rezeptbuch der Küche**:
+6 Rezepte (Blumenkohlcremesuppe, Glasierte KArotten, Geschnetzeltes Kalbfleisch Zürcher Art, Kartoffelgratin, Vanillegipfel, Zitronencake) 
+wurden als Grundlage für die Seed-Daten in `RecipeDataSeeder`verwendet. 
+- der fachliche Aufbau der Domäne (Attribute von Rezept und Zutat, z.B. Name/Menge/Einheit bei der Zutat) orientiert sich am Modul 320 (Java OOP Grundlagen, Klassen
+`Kochbuch`, `Rezept`, `Zutat`, `Schritt`), in dem dieselben Rezeptunterlagen bereits als reines Java-Objektmodell (ohne Datenbank) umgesetzt wurden.
+- Offizielle Spring-Boot- und Spring-Data-JPA-Dokumentation (docs.spring.io) zur Kl$rung einzelner Annotationen und Konfigurationsdetails. 
+- Bereits im Unterricht behandelte Aufgaben und Unterlagen (insbesondere 07A "Eine Eins-zu-viele-Beziehung bauen" sowie das eigene, vorher erstellte Projekt `quizbackend`)
+- als strukturelle Vorlage für Package-Aufbau, Entities, DTOs, Mapper, Service, Controller und Exception Handling.
+
+### KI-Nutzung (Claude, Antrhopic)
+Claude wurde während der gesamten Entwicklung als Lern- und Unsterstützungswerkzeug eingesetzt, angelehnt an die im Unterricht bereits behandelte Vorlage (07A `quizbacken`).
+Konkret wurde Claude für:
+- Erklärung von Konzepten (z.B. Owning Side vs. Inverse Side bei `@OneToMany` / `@ManyToOne`, Unterschied zwischen `record`und `class`, Bedeutung einzelner Spring-Annotationen)
+- Ableitung von Code-Vorlagen aus der bekannten Unterrichtsstruktur (z.B. Übertragung von `Order`/ `OrderItem`aus 07A auf `Recipe`/ `Ingredient`), die im eigenen Projekt nachvollzogen, 
+angepasst und getestet wurden.
+- Fehleranalyse bei Build- und Laufzeitfehlern (z.B. falsche Maven-Artifact-IDs, `varchar(255)`-Längenfehler bei `instructions`, Docker-Port-Konflikte).
+- Unterstützung beim Aufbau der Projektdokumentation (Struktur, Formulierungshilfe).
