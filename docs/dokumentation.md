@@ -241,7 +241,46 @@ Status `204 No Content` (kein Body)
 ---
 ## 4. Testplan und Testdurchführung
 ### 4.1 Manuelle Tests (Insomnia)
+Die manuellen Tests wurden mit Insomnia gegen die lokal laufende Anwendung('http://localhost:8080') bei aktiver PostgreSQL-Datenbank
+(Docker, Port 5433) durchgeführt. Alle 5 Testfälle decken je einen zentralen CRUD-Endpoint ab ( 2x POST, 2x GET, 1x DELETE)
+und prüfen den Erfolgsfall (Happy Path) sowie typische Fehlerfälle (Validierung, nicht vorhandene Ressource).
 
+#### Testplan
+| #  | Testfall                                  | Methode + URL            | Beispiel Body                                                                     | Erwartetes Ergebnis (Soll) |
+|---|-------------------------------------------|--------------------------|-----------------------------------------------------------------------------------|---|
+| 1 | Neues Rezept erfolgreich erstellen        | POST /api/recipes        | Gültiges Rezept mit Titel, Beschreibung, Kategorie, Zubereitung und mind. 1 Zutat | Status 201 Created, Response enthält das Rezept mit generierter ID |
+| 2 | Rezept ohne Titel erstellen (Validierung) | POST /api/recipes | Rezept mit leerem `title` | Status 400 Bad Request, Fehlermeldung zu `title` |
+| 3 | Alle Rezepte abrufen                      | GET /api/recipes | - | Status 200 OK, Liste aller Rezepte inkl. Zutaten|
+| 4 | Rezept mit ungültiger ID abrufen          | GET /api/recipes/9999 | - | Status 404 Not Found, Fehlermeldung "Recipe mit ID 9999 wurde nicht gefunden" |
+| 5 | Rezept löschen (inkl. Verifikation)       | DELETE /api/recipe/{id} | - | Status 204 No Content; anschliessendes GET auf dieselbe ID liefert 404 |
+
+#### Testdurchführung
+| # | Testfall | Erwartetes ERgebnis (Soll) | Tatsächliches Ergebnis (Ist) | Status | 
+|---|---|---|---|---|
+| 1 | Neues Rezept erfolgreich erstelln | 201 Created, Rezept mit ID | 201 Crated, Rezept mit ID 8 inkl beider Zutaten korrekt zurückgegeben | Bestanden |
+| 2 | Rezept ohne Titel erstellen | 400 Bad Request, Fehlermeldung zu `title` | 400 Bad REquest, Validierungsfehler korrekt gemeldet | Bestanden |
+| 3 | Alle REzepte abrufen | 200 OK. Liste aller REzepte | 200 OK. alle REzepte inkl. Zutaten zurückgegeben | Bestanden |
+| 4 | Rezept mit ungültiger ID abrufen | 404 Not Found | 404 Not Found, korrekte Fehlermeldung | Bestanden | 
+| 5 | Rezept löschen + Verifikation | 204 No Content, danach 404 bei GET | 204 No Content beim Löschen; anschliessend GET aus dieselbe ID lieferte 404 Not Found | Bestanden |
+
+**Ergenbnis:** Alle 5 Testfälle wurden erfolgreich durchgeführt. Die Anwendung verhält sich in allen getesteten Fällen wie erwartet. 
+
+#### Screenshots als Nachweis
+
+**Testfall 1 — Neues Rezept erfolgreich erstellen (201 Created)**
+![Testfall 1](Testfall_01.png)
+
+**Testfall 2 — Rezept ohne Titel erstellen (400 Bad Request)**
+![Testfall 2](Testfall_02.png)
+
+**Testfall 3 — Alle Rezepte abrufen (200 OK)**
+![Testfall 3](Testfall_03.png)
+
+**Testfall 4 — Rezept mit ungültiger ID abrufen (404 Not Found)**
+![Testfall 4](Testfall_04.png)
+
+**Testfall 5 — Rezept löschen (204 No Content)**
+![Testfall 5](Testfall_05.png)
 
 ### 4.2 Unit-Tests
 
