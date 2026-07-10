@@ -236,6 +236,8 @@ Status `204 No Content` (kein Body)
 
 ## 3. Klassendiagramm
 
+![Klassendiagramm](Klassendiagramm_MealMap_backend.png)
+
 ---
 ## 4. Testplan und Testdurchführung
 ### 4.1 Manuelle Tests (Insomnia)
