@@ -22,7 +22,7 @@ Autoren: Dominique Hassenpflug, Marina Tschirky
 
 ## Anforderungskatalog - User Stories
 
-### User Story 1: Rezept ersetllen
+### User Story 1: Rezept erstllen
 **Als** Nutzer 
 **moöchte ich** ein neues Rezept mit seinen Zutaten erfassen
 **damit ich** meine eigenen Rezepte digital verwalten kann.
@@ -247,7 +247,115 @@ Status `204 No Content` (kein Body)
 
 ---
 
-## 5. Installationsanleitung
+## 5. Installationsanleitung - mealmap-backend
+
+### Voraussetzungen
+
+Folgende Software muss lokal installiert sein, bevor mit der Installation begonnen wird:
+
+- **Java 21** (oder höher)
+- **Maven** (wird über den mitgelieferten Wrapper `mvnw` / `mvnw.cmd` verwendet, keine separate Installation nötig)
+- **Docker Desktop** (für die PostgreSQL-Datenbank)
+- **IntelliJ IDEA** (empfohlen, mit Maven-Unterstützung)
+- **Git**
+
+### 1. Repository klonen
+
+Terminal (z. B. IntelliJ-Terminal oder PowerShell) im gewünschten Zielordner öffnen und ausführen:
+
+```bash
+git clone https://github.com/DomHas/mealmap-backend.git
+cd mealmap-backend
+```
+
+### 2. Projekt in IntelliJ öffnen
+
+1. IntelliJ IDEA öffnen
+2. **File → Open** → den geklonten Ordner `mealmap-backend` auswählen
+3. IntelliJ erkennt automatisch die `pom.xml` und importiert das Projekt als Maven-Projekt
+4. Falls die Dependencies nicht automatisch aufgelöst werden: Rechtsklick auf `pom.xml` → **Maven → Reload Project**
+5. Kontrolle: Es darf kein rotes Kreuz auf dem `pom.xml`-Tab erscheinen
+
+### 3. Datenbank (PostgreSQL) starten
+
+Die Anwendung benötigt eine laufende PostgreSQL-Datenbank, die über Docker bereitgestellt wird.
+
+1. Docker Desktop starten und warten, bis es vollständig hochgefahren ist
+2. Im Terminal, im Projekt-Root (gleiche Ebene wie `docker-compose.yml`):
+
+```bash
+docker compose up -d
+```
+
+3. Kontrolle, ob der Container läuft:
+
+```bash
+docker ps
+```
+
+Es sollte ein Container `mealmap-postgres` mit Status `Up` erscheinen, gemappt auf Port `5433` (lokal) → `5432` (im Container).
+
+### 4. Konfiguration prüfen
+
+Die Datei `src/main/resources/application.properties` enthält bereits die passenden Zugangsdaten für die Datenbank:
+
+- **Datenbank:** `mealmapdb`
+- **User:** `mealmap`
+- **Passwort:** `mealmap`
+- **Port:** `5433`
+
+Diese Werte müssen mit den Angaben in der `docker-compose.yml` übereinstimmen. Bei Standard-Setup ist keine Anpassung nötig.
+
+### 5. Anwendung starten
+
+**Über IntelliJ:**
+
+Die Klasse `MealmapBackendApplication` öffnen und über den grünen Play-Button links neben der `main`-Methode starten.
+
+**Über das Terminal:**
+
+```bash
+./mvnw spring-boot:run
+```
+
+Bei erfolgreichem Start erscheinen in der Konsole u. a. folgende Meldungen:
+
+```
+HikariPool-1 - Start completed.
+Tomcat started on port 8080 (http)
+Started MealmapBackendApplication in X seconds
+```
+
+Beim allerersten Start befüllt der `RecipeDataSeeder` die Datenbank automatisch mit sechs Beispielrezepten samt Zutaten.
+
+### 6. API testen
+
+Die Anwendung ist danach unter `http://localhost:8080` erreichbar. Beispiel-Endpoint zur Kontrolle:
+
+```
+GET http://localhost:8080/api/recipes
+```
+
+Dieser sollte eine JSON-Liste mit den geseedeten Rezepten zurückliefern.
+
+### 7. Tests ausführen (optional)
+
+Die Unit-Tests liegen unter `src/test/java`. Sie können einzeln oder gesamt über IntelliJ (Rechtsklick auf den `test`-Ordner → **Run 'All Tests'**) oder über das Terminal ausgeführt werden:
+
+```bash
+./mvnw test
+```
+
+**Hinweis:** Die Repository- und Seeder-Tests (`@DataJpaTest`, `@SpringBootTest`) benötigen die laufende Docker-Datenbank aus Schritt 3. Die Service- und Controller-Tests (Mockito, `@WebMvcTest`) benötigen keine Datenbankverbindung.
+
+### Fehlerbehebung
+
+| Problem | Lösung |
+|---|---|
+| `Cannot connect to the Docker daemon` | Docker Desktop starten und warten, bis es vollständig läuft |
+| Port `5433` bereits belegt | Anderen Container/Prozess auf diesem Port beenden, oder Port in `docker-compose.yml` und `application.properties` anpassen |
+| Rotes Kreuz auf `pom.xml` | Maven-Projekt neu laden (**Maven → Reload Project**) |
+| `HikariPool` Verbindungsfehler beim Start | Prüfen, ob der Docker-Container tatsächlich läuft (`docker ps`) |
 
 ---
 
