@@ -16,12 +16,20 @@ Autoren: Dominique Hassenpflug, Marina Tschirky
 ---
 
 ## 1. Projektidee
+Im Modul 294 haben wir mit **MealMap** eine Web-Applikation zum Entdecken von REzepten aus aller Welt entwickelt. Nutzer
+konnten Rezepte nach KAtegorie durchsuchen, zu einer persönlichen Favoritenliste hinzufügen und mit Notiz sowie Bewertung versehen.
+die Rezeptdaten stammten dabei von der externen API **TheMealDB**, die Favoriten wurden lokal über **json-server** gespeichert. 
 
+Aufbauend auf dieser Idee entstand **nealmap-backend**: eine eigenssständige REST-API zur Verwaltung von Kochrezepten und deren
+Zutaten, entwickelt mit **Spring Boot** und **PostgreSQL**. Statt wie im Frontend auf eine exterene API zuzugreifen, verwalten wir die Rezepte und 
+Zutaten hier selbst in einer eigenen DAtenbank. Nutzer können Rezepte anlegen, durchsuchen, im Detail ansehen, bearbeiten und 
+löschen. Jedes Rezept besteht aus allgemeinen Angaben (Titel, Beschreibung, Kategorie, Zubereitung) sowie euber beliebigen Anzahl an Zutaten
+mit Menge und Einheit.
 
+Zielgruppe sind Personen, die ihre eigenen Rezepte strukturiert und durchsuchbar ablegen möchten. Für diese LB ist das backend bewusst als eigenständiges,
+unabhängiges PRojekt umgesetzt, ohne technische Anbindung an TheMealDB oder das bestehende MealMap-Frontend.
 ---
-
 ## Anforderungskatalog - User Stories
-
 ### User Story 1: Rezept erstllen
 **Als** Nutzer 
 **moöchte ich** ein neues Rezept mit seinen Zutaten erfassen
