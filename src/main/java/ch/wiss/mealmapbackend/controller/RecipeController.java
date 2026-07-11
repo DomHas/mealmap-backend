@@ -68,7 +68,6 @@ public class RecipeController {
      * Löscht ein Rezept anhand seiner ID.
      * @param id die ID des zu löschenden Rezepts
      */
-
     @DeleteMapping("/api/recipes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRecipe(@PathVariable Long id) {
