@@ -19,6 +19,11 @@ public class RecipeMapper {
         // statische Hilfsklasse, keine Instanzen
     }
 
+    /**
+     * Wandelt ein Recipe-Entity samt Zutaten in ein RecipeDTO um.
+     * @param recipe das umzuwandelnde Rezept
+     * @return das zugehörige {@link RecipeDTO}
+     */
     public static RecipeDTO toDTO(Recipe recipe) {
         List<IngredientDTO> ingredientDTOs = recipe.getIngredients().stream().map(RecipeMapper::toIngredientDTO).toList();
 
@@ -32,6 +37,11 @@ public class RecipeMapper {
         );
     }
 
+    /**
+     * Wandelt ein Ingredient-Entity in ein IngredientDTO um.
+     * @param ingredient die umzuwandelnde Zutat
+     * @return das zugehörige {@link IngredientDTO}
+     */
     public static IngredientDTO toIngredientDTO(Ingredient ingredient) {
         return new IngredientDTO(
                 ingredient.getId(),
@@ -41,6 +51,11 @@ public class RecipeMapper {
         );
     }
 
+    /**
+     * Baut aus Formulardaten ein neues Recipe-Entity samt Zutaten auf.
+     * @param dto die validierten Eingabedaten
+     * @return das neu erstellte {@link Recipe}, noch nicht gespeichert
+     */
     public static Recipe fromDTO(RecipeFormDTO dto) {
         Recipe recipe = new Recipe(
                 dto.title(),
