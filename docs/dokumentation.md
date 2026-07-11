@@ -296,6 +296,48 @@ und prüfen den Erfolgsfall (Happy Path) sowie typische Fehlerfälle (Validierun
 
 ### 4.2 Unit-Tests
 
+Die automatisierten Tests wurden mit JUnit 5, Mockito und AssertJ umgesetzt und decken alle drei im Unterricht behandelten Testarten ab: Repository-Tests (`@DataJpaTest`), Service-Tests (reines Mockito) und Controller-Tests (`@WebMvcTest`). Insgesamt wurden 8 Tests erstellt, verteilt auf 4 Testklassen.
+
+#### Testplan
+| # | Testklasse | Testfall | Testart | Was wird geprüft |
+|---|---|---|---|---|
+| 1 | `RecipeRepositoryTest` | `saveRecipeAlsoSavesIngredients` | `@DataJpaTest` | Beim Speichern eines Rezepts werden die verknüpften Zutaten korrekt mitgespeichert (Cascade, Fremdschlüssel) |
+| 2 | `RecipeRepositoryTest` | `findByIdReturnsEmptyForUnknownId` | `@DataJpaTest` | Suche nach nicht existierender ID liefert ein leeres `Optional`, keine Exception |
+| 3 | `RecipeSeederTest` | `seederHasDbFilled` | `@SpringBootTest` | Nach App-Start enthält die Datenbank mindestens ein Rezept (Seeder lief erfolgreich) |
+| 4 | `RecipeSeederTest` | `recipeCanBeLoaded` | `@SpringBootTest` | Ein vom Seeder angelegtes Rezept (ID 1) kann aus der Datenbank geladen werden |
+| 5 | `RecipeServiceMockTest` | `getRecipeByIdThrowsWhenNotFound` | Mockito | Service wirft `RecipeNotFoundException`, wenn das Repository kein Rezept findet |
+| 6 | `RecipeServiceMockTest` | `createRecipeSavesAndReturnsDTO` | Mockito | Service mapped Formulardaten korrekt zu einer Entity, speichert sie und gibt das passende DTO zurück |
+| 7 | `RecipeControllerTest` | `getByIdReturns200WithBody` | `@WebMvcTest` | GET-Endpoint liefert Status 200 und das korrekte Rezept als JSON |
+| 8 | `RecipeControllerTest` | `getByIdReturns404WhenServiceThrows` | `@WebMvcTest` | GET-Endpoint liefert Status 404, wenn der Service eine `RecipeNotFoundException` wirft |
+
+#### Testdurchführung
+| # | Testfall | Erwartetes Ergebnis (Soll) | Tatsächliches Ergebnis (Ist) | Status |
+|---|---|---|---|---|
+| 1 | `saveRecipeAlsoSavesIngredients` | Rezept und Zutat werden gespeichert, Zutat verweist auf das Rezept | Rezept und Zutat erfolgreich gespeichert, Fremdschlüssel korrekt gesetzt | Bestanden |
+| 2 | `findByIdReturnsEmptyForUnknownId` | Leeres `Optional` | Leeres `Optional` zurückgegeben | Bestanden |
+| 3 | `seederHasDbFilled` | Anzahl Rezepte > 0 | 6 Rezepte in der Datenbank vorhanden | Bestanden |
+| 4 | `recipeCanBeLoaded` | Rezept mit ID 1 vorhanden | Rezept mit ID 1 erfolgreich geladen | Bestanden |
+| 5 | `getRecipeByIdThrowsWhenNotFound` | `RecipeNotFoundException` wird geworfen | Exception korrekt geworfen | Bestanden |
+| 6 | `createRecipeSavesAndReturnsDTO` | DTO mit korrektem Titel und Kategorie | DTO korrekt zurückgegeben, `save()` mit korrekten Werten aufgerufen | Bestanden |
+| 7 | `getByIdReturns200WithBody` | Status 200, JSON mit korrektem Titel | Status 200, `title` korrekt im JSON-Body | Bestanden |
+| 8 | `getByIdReturns404WhenServiceThrows` | Status 404 | Status 404 zurückgegeben | Bestanden |
+
+**Ergebnis:** Alle 8 Tests wurden erfolgreich ausgeführt (`Process finished with exit code 0` bei jedem Testlauf). Die Anwendung verhält sich in allen getesteten Fällen wie erwartet.
+
+#### Screenshots als Nachweis
+
+**RecipeRepositoryTest — 2 Tests bestanden**
+![RecipeRepositoryTest](Unit_Test_01.png)
+
+**RecipeSeederTest — 2 Tests bestanden**
+![RecipeSeederTest](Unit_Test_02.png)
+
+**RecipeServiceMockTest — 2 Tests bestanden**
+![RecipeServiceMockTest](Unit_Test_03.png)
+
+**RecipeControllerTest — 2 Tests bestanden**
+![RecipeControllerTest](Unit_Test_04.png)
+
 ---
 
 ## 5. Installationsanleitung - mealmap-backend
