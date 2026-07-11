@@ -502,21 +502,22 @@ Projektidee, User Stories und den Insomnia-Testteil der
 Dokumentation. Marina Tschirky übernahm Mapper, Service, Controller,
 Exception Handling, alle Unit-Tests, das Klassendiagramm und die
 Installationsanleitung.
+
 ### Internet-Quellen
 - **Pauli Rezeptbuch der Küche**:
-6 Rezepte (Blumenkohlcremesuppe, Glasierte KArotten, Geschnetzeltes Kalbfleisch Zürcher Art, Kartoffelgratin, Vanillegipfel, Zitronencake) 
+6 Rezepte (Blumenkohlcremesuppe, Glasierte Karotten, Geschnetzeltes Kalbfleisch Zürcher Art, Kartoffelgratin, Vanillegipfel, Zitronencake) 
 wurden als Grundlage für die Seed-Daten in `RecipeDataSeeder`verwendet. 
 - der fachliche Aufbau der Domäne (Attribute von Rezept und Zutat, z.B. Name/Menge/Einheit bei der Zutat) orientiert sich am Modul 320 (Java OOP Grundlagen, Klassen
 `Kochbuch`, `Rezept`, `Zutat`, `Schritt`), in dem dieselben Rezeptunterlagen bereits als reines Java-Objektmodell (ohne Datenbank) umgesetzt wurden.
-- Offizielle Spring-Boot- und Spring-Data-JPA-Dokumentation (docs.spring.io) zur Kl$rung einzelner Annotationen und Konfigurationsdetails. 
+- Offizielle Spring-Boot- und Spring-Data-JPA-Dokumentation (docs.spring.io) zur Klärung einzelner Annotationen und Konfigurationsdetails. 
 - Bereits im Unterricht behandelte Aufgaben und Unterlagen (insbesondere 07A "Eine Eins-zu-viele-Beziehung bauen" sowie das eigene, vorher erstellte Projekt `quizbackend`)
 - als strukturelle Vorlage für Package-Aufbau, Entities, DTOs, Mapper, Service, Controller und Exception Handling.
 
-### KI-Nutzung (Claude, Antrhopic)
-Claude wurde während der gesamten Entwicklung als Lern- und Unsterstützungswerkzeug eingesetzt, angelehnt an die im Unterricht bereits behandelte Vorlage (07A `quizbacken`).
+### KI-Nutzung (Claude, Anthropic)
+Claude wurde während der gesamten Entwicklung als Lern- und Unterstützungswerkzeug eingesetzt, angelehnt an die im Unterricht bereits behandelte Vorlage (07A `quizbackend`).
 Konkret wurde Claude für:
 - Erklärung von Konzepten (z.B. Owning Side vs. Inverse Side bei `@OneToMany` / `@ManyToOne`, Unterschied zwischen `record`und `class`, Bedeutung einzelner Spring-Annotationen)
 - Ableitung von Code-Vorlagen aus der bekannten Unterrichtsstruktur (z.B. Übertragung von `Order`/ `OrderItem`aus 07A auf `Recipe`/ `Ingredient`), die im eigenen Projekt nachvollzogen, 
 angepasst und getestet wurden.
-- Fehleranalyse bei Build- und Laufzeitfehlern (z.B. falsche Maven-Artifact-IDs, `varchar(255)`-Längenfehler bei `instructions`, Docker-Port-Konflikte).
+- Fehleranalyse bei Build- und Laufzeitfehlern (z.B. falsche Maven-Artifact-IDs, `varchar(255)`-Längenfehler bei `instructions`, Docker-Port-Konflikte, fehlender Import für `RecipeController` von `RecipeService`).
 - Unterstützung beim Aufbau der Projektdokumentation (Struktur, Formulierungshilfe).
