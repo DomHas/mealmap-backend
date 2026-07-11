@@ -494,7 +494,9 @@ Basierend auf der Commit-Historie im GitHub-Repository
 | 11.07.2026 | JavaDoc für RecipeController ergänzt | Marina Tschirky |
 | 11.07.2026 | JavaDoc für RecipeController ergänzt | Marina Tschirky |
 | 11.07.2026 | Testplan und Testdurchführung Unit-Tests ergänzt, Screenshots der Testklassen | Marina Tschirky |
-| 11.07.2026 | Testplan und Testdurchführung Unit-Tests ergänzt, Screenshots der Testklassen | Marina Tschirky |
+| 11.07.2026 | KI-Nutzung ergänzt | Marina Tschirky |
+| 11.07.2026 | Zusammenarbeitsübersicht mit heutigen Einträgen ergänzt | Marina Tschirky |
+
 
 **Zusammenfassung:** Dominique Hasenpflug übernahm Projekt-Setup,
 Datenmodell (Entities, Repository, Seed-Daten, DTOs) sowie
