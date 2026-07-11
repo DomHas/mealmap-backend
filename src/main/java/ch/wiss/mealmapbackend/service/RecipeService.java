@@ -1,5 +1,6 @@
 package ch.wiss.mealmapbackend.service;
 
+import ch.wiss.mealmapbackend.controller.RecipeController;
 import ch.wiss.mealmapbackend.dto.RecipeDTO;
 import ch.wiss.mealmapbackend.dto.RecipeFormDTO;
 import ch.wiss.mealmapbackend.exception.RecipeNotFoundException;
@@ -11,6 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Service-Schicht für die Geschäftslogik rund um Rezepte.
+ * Vermittelt zwischen {@link RecipeController} und {@link RecipeRepository},
+ * mapped Entities zu DTOs und wirft {@link RecipeNotFoundException} bei nicht
+ * gefundenen Rezepten.
+ */
 @Service
 public class RecipeService {
 
