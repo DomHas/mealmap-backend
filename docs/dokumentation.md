@@ -16,13 +16,13 @@ Autoren: Dominique Hassenpflug, Marina Tschirky
 ---
 
 ## 1. Projektidee
-Im Modul 294 haben wir mit **MealMap** eine Web-Applikation zum Entdecken von REzepten aus aller Welt entwickelt. Nutzer
-konnten Rezepte nach KAtegorie durchsuchen, zu einer persönlichen Favoritenliste hinzufügen und mit Notiz sowie Bewertung versehen.
+Im Modul 294 haben wir mit **MealMap** eine Web-Applikation zum Entdecken von Rezepten aus aller Welt entwickelt. Nutzer
+konnten Rezepte nach Kategorie durchsuchen, zu einer persönlichen Favoritenliste hinzufügen und mit Notiz sowie Bewertung versehen.
 die Rezeptdaten stammten dabei von der externen API **TheMealDB**, die Favoriten wurden lokal über **json-server** gespeichert. 
 
 Aufbauend auf dieser Idee entstand **nealmap-backend**: eine eigenssständige REST-API zur Verwaltung von Kochrezepten und deren
 Zutaten, entwickelt mit **Spring Boot** und **PostgreSQL**. Statt wie im Frontend auf eine exterene API zuzugreifen, verwalten wir die Rezepte und 
-Zutaten hier selbst in einer eigenen DAtenbank. Nutzer können Rezepte anlegen, durchsuchen, im Detail ansehen, bearbeiten und 
+Zutaten hier selbst in einer eigenen Datenbank. Nutzer können Rezepte anlegen, durchsuchen, im Detail ansehen, bearbeiten und 
 löschen. Jedes Rezept besteht aus allgemeinen Angaben (Titel, Beschreibung, Kategorie, Zubereitung) sowie euber beliebigen Anzahl an Zutaten
 mit Menge und Einheit.
 
@@ -75,8 +75,8 @@ POST /api/recipes
 ### User Story 2: Rezepte durchsuchen
 
 **Als** Nutzer
-**moechte ich** alle vorhandenen Rezepte abrufen
-**damit ich** einen Ueberblick ueber meine Sammlung erhalte.
+**möchte ich** alle vorhandenen Rezepte abrufen
+**damit ich** einen Überblick ueber meine Sammlung erhalte.
 
 **Akzeptanzkriterien:**
 - Alle Rezepte werden inklusive ihrer Zutaten in einer Liste
@@ -110,14 +110,14 @@ GET /api/recipes
 ### User Story 3: Rezeptdetails ansehen
 
 **Als** Nutzer
-**moechte ich** ein bestimmtes Rezept ueber seine ID abrufen
+**möchte ich** ein bestimmtes Rezept ueber seine ID abrufen
 **damit ich** nur die Details eines Rezepts sehe, das mich
 interessiert.
 
 **Akzeptanzkriterien:**
-- Bei gueltiger ID werden alle Details inklusive Zutaten angezeigt
+- Bei gültiger ID werden alle Details inklusive Zutaten angezeigt
   (READ)
-- Bei ungueltiger ID erscheint eine verstaendliche Fehlermeldung
+- Bei ungültiger ID erscheint eine verständliche Fehlermeldung
   (Rezept nicht gefunden)
 
 **API-Ablauf:**
@@ -154,15 +154,15 @@ GET /api/recipes/{id}
 ### User Story 4: Rezept bearbeiten
 
 **Als** Nutzer
-**moechte ich** ein bestehendes Rezept bearbeiten
+**möchte ich** ein bestehendes Rezept bearbeiten
 **damit ich** Fehler korrigieren oder Mengenangaben anpassen kann.
 
 **Akzeptanzkriterien:**
 - Titel, Beschreibung, Kategorie, Zubereitung und Zutatenliste
   koennen vollstaendig aktualisiert werden (UPDATE)
-- Ungueltige Eingaben (z. B. leerer Titel) werden mit einer
+- Ungültige Eingaben (z. B. leerer Titel) werden mit einer
   Fehlermeldung abgelehnt (Validierung)
-- Bei ungueltiger ID erscheint eine verstaendliche Fehlermeldung
+- Bei ungültiger ID erscheint eine verstädliche Fehlermeldung
 
 **API-Ablauf:**
 ```
@@ -211,16 +211,16 @@ PUT /api/recipes/{id}
 ```
 
 ---
-### User Story 5: Rezept loeschen
+### User Story 5: Rezept löschen
 
 **Als** Nutzer
-**moechte ich** ein nicht mehr benoetigtes Rezept loeschen
-**damit** meine Sammlung uebersichtlich und aktuell bleibt.
+**möchte ich** ein nicht mehr benötigtes Rezept löschen
+**damit** meine Sammlung übersichtlich und aktuell bleibt.
 
 **Akzeptanzkriterien:**
-- Rezept kann inklusive aller Zutaten geloescht werden (DELETE)
-- Bei ungueltiger ID erscheint eine verstaendliche Fehlermeldung
-- Nach dem Loeschen ist das Rezept nicht mehr abrufbar
+- Rezept kann inklusive aller Zutaten gelöscht werden (DELETE)
+- Bei ungültiger ID erscheint eine verständliche Fehlermeldung
+- Nach dem Löschen ist das Rezept nicht mehr abrufbar
 
 **API-Ablauf:**
 ```
