@@ -1,3 +1,7 @@
+![Titelblatt](Titelblatt_MealMap.png)
+
+---
+
 # mealmap-backend - Projektdokumentation
 
 Modul 295 - Backend für Applikationen realisieren
