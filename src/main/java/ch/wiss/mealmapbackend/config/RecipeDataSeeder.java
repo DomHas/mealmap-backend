@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 /**
- * Befüllt die Datenbank beim Start mit Beispiel-REzepten,
+ * Befüllt die Datenbank beim Start mit Beispiel-Rezepten,
  * sofern noch keine Daten vorhanden sind.
  */
 @Component

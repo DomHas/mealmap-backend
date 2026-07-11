@@ -50,6 +50,11 @@ public class Recipe {
         ingredients.add(ingredient);
         ingredient.setRecipe(this);
     }
+
+    /**
+     * Entfernt eine Zutat und hält beide Seiten
+     * der Beziehung synchron.
+     */
     public void removeIngredient(Ingredient ingredient) {
         ingredients.remove(ingredient);
         ingredient.setRecipe(null);
