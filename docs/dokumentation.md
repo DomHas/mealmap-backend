@@ -484,6 +484,17 @@ Basierend auf der Commit-Historie im GitHub-Repository
 | 10.07.2026 | Installationsanleitung ergänzt und Überschriftenhierarchie korrigiert | Marina Tschirky |
 | 10.07.2026 | Testplan und Testdurchführung Insomnia-Tests ergänzt, Screenshots der Testfälle | Dominique Hasenpflug |
 | 10.07.2026 | Projektidee ergänzt | Dominique Hasenpflug |
+| 11.07.2026 | Titelblatt zur Dokumentation hinzugefügt | Marina Tschirky |
+| 11.07.2026 | Rechtschreibung und Formulierungen in Dokumentation überarbeitet | Marina Tschirky |
+| 11.07.2026 | JavaDoc für removeIngredient ergänzt | Marina Tschirky |
+| 11.07.2026 | Fehlenden Import für RecipeController in RecipeService ergänzt | Marina Tschirky |
+| 11.07.2026 | JavaDoc für RecipeMapper ergänzt | Marina Tschirky |
+| 11.07.2026 | JavaDoc für RecipeNotFoundException ergänzt | Marina Tschirky |
+| 11.07.2026 | JavaDoc für GlobalExceptionHandler ergänzt | Marina Tschirky |
+| 11.07.2026 | JavaDoc für RecipeController ergänzt | Marina Tschirky |
+| 11.07.2026 | JavaDoc für RecipeController ergänzt | Marina Tschirky |
+| 11.07.2026 | Testplan und Testdurchführung Unit-Tests ergänzt, Screenshots der Testklassen | Marina Tschirky |
+| 11.07.2026 | Testplan und Testdurchführung Unit-Tests ergänzt, Screenshots der Testklassen | Marina Tschirky |
 
 **Zusammenfassung:** Dominique Hasenpflug übernahm Projekt-Setup,
 Datenmodell (Entities, Repository, Seed-Daten, DTOs) sowie
