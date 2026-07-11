@@ -12,15 +12,30 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Fängt Exceptions aus allen Controllern zentral ab und wandelt
+ * sie in einheitliche {@link ErrorResponse}-Antworten um.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Behandelt den Fall, dass ein Rezept mit der angegebenen ID nicht existiert.
+     * @param ex die ausgelöste Exception
+     * @return eine {@link ErrorResponse} mit Status 404
+     */
     @ExceptionHandler(RecipeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFound(RecipeNotFoundException ex) {
         return new ErrorResponse(LocalDateTime.now(), 404, ex.getMessage(), Map.of());
     }
 
+    /**
+     * Behandelt fehlgeschlagene Bean-Validierung (z. B. bei @Valid-Requests).
+     * Sammelt alle Feldfehler in einer Map.
+     * @param ex die ausgelöste Validierungs-Exception
+     * @return eine {@link ErrorResponse} mit Status 400 und allen Feldfehlern
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidation(MethodArgumentNotValidException ex) {
